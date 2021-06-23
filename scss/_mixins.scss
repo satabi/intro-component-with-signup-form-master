@@ -1,0 +1,48 @@
+@mixin center-block {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin psuedo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  position: $pos;
+  display: $display;
+}
+
+@mixin letter-spacing($spacing) {
+  letter-spacing: ($spacing / 1000) * 1em;
+}
+
+@mixin background-img($src) {
+  background-image: url($src);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// Breakpoints
+
+$breakpoints-up: (
+  "medium": "580px",
+  "large": "967px",
+  "xlarge": "1600px",
+);
+
+$breakpoints-down: (
+  "small": "579px",
+  "medium": "966px",
+  "large": "1599px",
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
